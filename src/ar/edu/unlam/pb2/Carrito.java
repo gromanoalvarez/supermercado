@@ -1,6 +1,7 @@
 package ar.edu.unlam.pb2;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Carrito {
 	
@@ -8,12 +9,22 @@ public class Carrito {
 	private Integer numeracion = 0;
 	private boolean estaDisponible;
 	private ArrayList<Producto> productosCargados;
+	
+	private ArrayList<Producto> tipoLeche ;
+	private ArrayList<Producto> tipoHarina ;
+	private ArrayList<Producto> tipoManteca ;
+	private ArrayList<Producto> tipoAzucar ;
 
 	public Carrito () {
 		this.capacidadEnkilos=100;
 		numeracion++;
 		estaDisponible=true;
 		productosCargados= new ArrayList<Producto>();
+		
+		 tipoLeche = new ArrayList<>();
+		 tipoHarina = new ArrayList<>();
+		 tipoManteca = new ArrayList<>();
+		 tipoAzucar = new ArrayList<>();
 	}
 
 	public Integer getCapacidadEnkilos() {
@@ -65,6 +76,44 @@ public class Carrito {
 	public ArrayList<Producto> getProductosCargados() {
 		return productosCargados;
 	}
+
+	public void getProductosDeMismoTipoCargados() {
+		for(Producto p: productosCargados) {
+			switch(p.getTipoDeProducto()) {
+				case LECHE:	
+					tipoLeche.add(p);
+					break;
+				case HARINA:	
+					tipoHarina.add(p);
+					break;
+				case MANTECA:	
+					tipoManteca.add(p);
+					break;
+				case AZUCAR:	
+					tipoAzucar.add(p);
+					break;
+			}
+		}
+	}
+
+	public ArrayList<Producto> getTipoLeche() {
+		return tipoLeche;
+	}
+
+	public ArrayList<Producto> getTipoHarina() {
+		return tipoHarina;
+	}
+
+	public ArrayList<Producto> getTipoManteca() {
+		return tipoManteca;
+	}
+
+	public ArrayList<Producto> getTipoAzucar() {
+		return tipoAzucar;
+	}
+	
+	
+	
 	
 	
 

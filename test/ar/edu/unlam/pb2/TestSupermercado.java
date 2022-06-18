@@ -29,7 +29,7 @@ public class TestSupermercado {
 			Integer CANTIDAD_DE_PRODUCTO_EN_CARRITO_ESPERADOS=1;
 			argenchino.registrarNuevoCarrito();
 			
-			Producto leche = new Producto(TipoDeProducto.LECHE);
+			Producto leche =  new Leche();
 			Carrito carritoAUsar = argenchino.tomarUnCarrito();
 			carritoAUsar.agregarProducto(leche);
 			
@@ -42,16 +42,15 @@ public class TestSupermercado {
 			Integer CANTIDAD_DE_PRODUCTO_EN_CARRITO_ESPERADOS=3;
 			argenchino.registrarNuevoCarrito();
 			
-			Producto leche = new Producto(TipoDeProducto.LECHE);
-			Producto leche2 = new Producto(TipoDeProducto.LECHE);
-			Producto leche3 = new Producto(TipoDeProducto.LECHE);
+			Producto leche = new Leche();
+			Producto leche2 = new Leche();
+			Producto leche3 = new Leche();
 
 			Carrito carritoAUsar = argenchino.tomarUnCarrito();
 			carritoAUsar.agregarProducto(leche);
 			carritoAUsar.agregarProducto(leche2);
 			carritoAUsar.agregarProducto(leche3);
 
-			
 			assertEquals(CANTIDAD_DE_PRODUCTO_EN_CARRITO_ESPERADOS, (Integer)carritoAUsar.getProductosCargados().size());			
 		}
 		
@@ -61,20 +60,30 @@ public class TestSupermercado {
 			Integer CANTIDAD_DE_PRODUCTO_EN_TOTAL_CARRITO_ESPERADOS=4, CANTIDAD_DE_PRODUCTOS_REPETIDOS_ESPERADOS = 3;
 			argenchino.registrarNuevoCarrito();
 			
-			Producto leche = new Producto(TipoDeProducto.LECHE);
-			Producto leche2 = new Producto(TipoDeProducto.LECHE);
-			Producto leche3 = new Producto(TipoDeProducto.LECHE);
-			Producto harina = new Producto(TipoDeProducto.HARINA);
+			Producto leche = new Leche();
+			Producto leche2 = new Leche();
+			Producto leche3 = new Leche();
+			Producto harina = new Harina();
 
 			Carrito carritoAUsar = argenchino.tomarUnCarrito();
 			carritoAUsar.agregarProducto(leche);
 			carritoAUsar.agregarProducto(leche2);
 			carritoAUsar.agregarProducto(leche3);
 			carritoAUsar.agregarProducto(harina);
+			argenchino.hacerTicket(carritoAUsar);
 
 			assertEquals(CANTIDAD_DE_PRODUCTO_EN_TOTAL_CARRITO_ESPERADOS, (Integer)carritoAUsar.getProductosCargados().size());
-			assertEquals(CANTIDAD_DE_PRODUCTOS_REPETIDOS_ESPERADOS, (Integer)carritoAUsar.getProductosDeMismoTipoCargados().size());			
-
+			assertEquals(CANTIDAD_DE_PRODUCTOS_REPETIDOS_ESPERADOS, carritoAUsar.getTipoLeche());
+		}
+		
+		@Test
+		public void queSiLaCompraTieneMenosDeVeinteProductosNoHayaDescuento() {
+			
+		}
+		
+		@Test
+		public void queSiLaCompraTieneMasDeVeinteProductosHayaDescuento() {
+			
 		}
 
 }
