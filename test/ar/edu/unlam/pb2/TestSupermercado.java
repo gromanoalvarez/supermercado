@@ -1,7 +1,9 @@
 package ar.edu.unlam.pb2;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -73,17 +75,42 @@ public class TestSupermercado {
 			argenchino.hacerTicket(carritoAUsar);
 
 			assertEquals(CANTIDAD_DE_PRODUCTO_EN_TOTAL_CARRITO_ESPERADOS, (Integer)carritoAUsar.getProductosCargados().size());
-			assertEquals(CANTIDAD_DE_PRODUCTOS_REPETIDOS_ESPERADOS, carritoAUsar.getTipoLeche());
+			assertEquals(CANTIDAD_DE_PRODUCTOS_REPETIDOS_ESPERADOS, (Integer)carritoAUsar.getTipoLeche().size());
 		}
 		
 		@Test
 		public void queSiLaCompraTieneMenosDeVeinteProductosNoHayaDescuento() {
+			Integer CANTIDAD_DE_PRODUCTO_EN_TOTAL_CARRITO_ESPERADOS=19;
+			Supermercado argenchino = new Supermercado("Argenchino");
+			argenchino.registrarNuevoCarrito();
+			Carrito carritoAUsar = argenchino.tomarUnCarrito();
+
+			for(int i=0;i<19;i++) {
+				Producto leche = new Leche();
+				carritoAUsar.agregarProducto(leche);
+			}
+			
+			argenchino.hacerTicket(carritoAUsar);
+			assertEquals(CANTIDAD_DE_PRODUCTO_EN_TOTAL_CARRITO_ESPERADOS, (Integer)carritoAUsar.getProductosCargados().size());
+			assertFalse(carritoAUsar.getProductosCargados().get(1).descuento);
 			
 		}
 		
 		@Test
 		public void queSiLaCompraTieneMasDeVeinteProductosHayaDescuento() {
+			Integer CANTIDAD_DE_PRODUCTO_EN_TOTAL_CARRITO_ESPERADOS=21;
+			Supermercado argenchino = new Supermercado("Argenchino");
+			argenchino.registrarNuevoCarrito();
+			Carrito carritoAUsar = argenchino.tomarUnCarrito();
+
+			for(int i=0;i<=20;i++) {
+				Producto leche = new Leche();
+				carritoAUsar.agregarProducto(leche);
+			}
 			
+			argenchino.hacerTicket(carritoAUsar);
+			assertEquals(CANTIDAD_DE_PRODUCTO_EN_TOTAL_CARRITO_ESPERADOS, (Integer)carritoAUsar.getProductosCargados().size());
+			assertTrue(carritoAUsar.getProductosCargados().get(1).descuento);
 		}
 
 }

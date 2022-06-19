@@ -18,14 +18,22 @@ public abstract class Producto {
 		descuento=false;
 	}
 
-	public TipoDeProducto getTipoDeProducto() {
+	public final TipoDeProducto getTipoDeProducto() {
 		return tipoDeProducto;
 	}
 	
-	public TipoDeVencimiento getVencimiento() {
+	public final TipoDeVencimiento getVencimiento() {
 		return tipoDeVencimiento;
 	}
 
 	public abstract void establecerVencimiento();
 	public abstract void establecerDescuento();
+
+	@Override
+	public String toString() {
+		return "Producto [tipoDeProducto=" + tipoDeProducto + ", tipoDeVencimiento=" + tipoDeVencimiento
+				+ ", descuento=" + descuento + "]";
+	}
+	
+	
 }
