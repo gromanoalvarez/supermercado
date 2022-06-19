@@ -30,7 +30,7 @@ public class TestSupermercado {
 			Supermercado argenchino = new Supermercado("Argenchino");
 			Integer CANTIDAD_DE_PRODUCTO_EN_CARRITO_ESPERADOS=1;
 			argenchino.registrarNuevoCarrito();
-			
+			//Asignación Polimorfica
 			Producto leche =  new Leche();
 			Carrito carritoAUsar = argenchino.tomarUnCarrito();
 			carritoAUsar.agregarProducto(leche);
@@ -43,7 +43,7 @@ public class TestSupermercado {
 			Supermercado argenchino = new Supermercado("Argenchino");
 			Integer CANTIDAD_DE_PRODUCTO_EN_CARRITO_ESPERADOS=3;
 			argenchino.registrarNuevoCarrito();
-			
+			//Asignación Polimorfica
 			Producto leche = new Leche();
 			Producto leche2 = new Leche();
 			Producto leche3 = new Leche();
@@ -62,10 +62,12 @@ public class TestSupermercado {
 			Integer CANTIDAD_DE_PRODUCTO_EN_TOTAL_CARRITO_ESPERADOS=4, CANTIDAD_DE_PRODUCTOS_REPETIDOS_ESPERADOS = 3;
 			argenchino.registrarNuevoCarrito();
 			
+			//Asignación Polimorfica
 			Producto leche = new Leche();
+			Producto harina = new Harina();
 			Producto leche2 = new Leche();
 			Producto leche3 = new Leche();
-			Producto harina = new Harina();
+
 
 			Carrito carritoAUsar = argenchino.tomarUnCarrito();
 			carritoAUsar.agregarProducto(leche);
@@ -85,6 +87,7 @@ public class TestSupermercado {
 			argenchino.registrarNuevoCarrito();
 			Carrito carritoAUsar = argenchino.tomarUnCarrito();
 
+			//Asignación Polimorfica
 			for(int i=0;i<19;i++) {
 				Producto leche = new Leche();
 				carritoAUsar.agregarProducto(leche);
@@ -92,7 +95,7 @@ public class TestSupermercado {
 			
 			argenchino.hacerTicket(carritoAUsar);
 			assertEquals(CANTIDAD_DE_PRODUCTO_EN_TOTAL_CARRITO_ESPERADOS, (Integer)carritoAUsar.getProductosCargados().size());
-			assertFalse(carritoAUsar.getProductosCargados().get(1).descuento);
+			assertFalse(carritoAUsar.getProductosCargados().get(1).getDescuento());
 			
 		}
 		
@@ -110,7 +113,10 @@ public class TestSupermercado {
 			
 			argenchino.hacerTicket(carritoAUsar);
 			assertEquals(CANTIDAD_DE_PRODUCTO_EN_TOTAL_CARRITO_ESPERADOS, (Integer)carritoAUsar.getProductosCargados().size());
-			assertTrue(carritoAUsar.getProductosCargados().get(1).descuento);
+			assertTrue(carritoAUsar.getProductosCargados().get(1).getDescuento());
+			//HERENCIA
+			//De un Leche "que es" un Producto accede a getDescuento declarado en Producto
+			assertTrue(carritoAUsar.getTipoLeche().get(10).getDescuento());
 		}
 
 }

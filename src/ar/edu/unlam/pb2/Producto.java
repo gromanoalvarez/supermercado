@@ -25,6 +25,10 @@ public abstract class Producto {
 	public final TipoDeVencimiento getVencimiento() {
 		return tipoDeVencimiento;
 	}
+	
+	public final Boolean getDescuento() {
+		return descuento;
+	}
 
 	public abstract void establecerVencimiento();
 	public abstract void establecerDescuento();

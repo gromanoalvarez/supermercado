@@ -10,10 +10,10 @@ public class Carrito {
 	private boolean estaDisponible;
 	private ArrayList<Producto> productosCargados;
 	
-	private ArrayList<Producto> tipoLeche ;
-	private ArrayList<Producto> tipoHarina ;
-	private ArrayList<Producto> tipoManteca ;
-	private ArrayList<Producto> tipoAzucar ;
+	private ArrayList<Leche> tipoLeche ;
+	private ArrayList<Harina> tipoHarina ;
+	private ArrayList<Manteca> tipoManteca ;
+	private ArrayList<Azucar> tipoAzucar ;
 
 	public Carrito () {
 		this.capacidadEnkilos=100;
@@ -78,7 +78,16 @@ public class Carrito {
 	}
 
 	public void getProductosDeMismoTipoCargados() {
+		
+		//Instanciamiento Polimorfico  y Casting para obtener acceso a los miembros de la especializacion
 		for(Producto p: productosCargados) {
+			if(p instanceof Leche)tipoLeche.add((Leche)p);
+			else if(p instanceof Harina)tipoHarina.add((Harina)p);
+			else if(p instanceof Azucar)tipoAzucar.add((Azucar)p);
+			else if(p instanceof Manteca)tipoManteca.add((Manteca)p);
+		}		
+		
+/*		for(Producto p: productosCargados) {
 			switch(p.getTipoDeProducto()) {
 				case LECHE:	
 					tipoLeche.add(p);
@@ -93,22 +102,23 @@ public class Carrito {
 					tipoAzucar.add(p);
 					break;
 			}
-		}
+		} 
+		*/
 	}
 
-	public ArrayList<Producto> getTipoLeche() {
+	public ArrayList<Leche> getTipoLeche() {
 		return tipoLeche;
 	}
 
-	public ArrayList<Producto> getTipoHarina() {
+	public ArrayList<Harina> getTipoHarina() {
 		return tipoHarina;
 	}
 
-	public ArrayList<Producto> getTipoManteca() {
+	public ArrayList<Manteca> getTipoManteca() {
 		return tipoManteca;
 	}
 
-	public ArrayList<Producto> getTipoAzucar() {
+	public ArrayList<Azucar> getTipoAzucar() {
 		return tipoAzucar;
 	}
 	

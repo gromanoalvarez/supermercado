@@ -17,7 +17,4 @@ public class Leche extends Producto{
 		super.descuento= true;
 	}
 	
-	
-	
-
 }
